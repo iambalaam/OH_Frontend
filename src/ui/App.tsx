@@ -6,6 +6,7 @@ import {Store} from 'redux';
 import {store} from '../state/store';
 
 import Slider from './Slider/Slider';
+import NotificationBar from './Notifications/NotificationBar';
 
 interface AppState {
     store: Store<store>
@@ -24,6 +25,7 @@ class App extends React.Component<{}, AppState> {
                     <header className="App-header">
                         <Nav />
                         <Slider />
+                        <NotificationBar />
                     </header>
                 </div>
             </Provider>

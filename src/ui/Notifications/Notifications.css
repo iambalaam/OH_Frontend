@@ -1,0 +1,45 @@
+.oh-notif{
+    width: 100%;
+    height: 40px;
+    box-sizing: border-box;
+    transition: 150ms;
+}
+.oh-notif-INFO {
+        width: 100%;
+        height: 40px;
+        box-sizing: border-box;
+        transition: 150ms;
+        background-color: #e5e3df;
+
+}
+.oh-notif-WARN {
+        width: 100%;
+        height: 40px;
+        box-sizing: border-box;
+        transition: 150ms;
+        background-color: #5d89ac;
+}
+.oh-notif-ERROR {
+        width: 100%;
+        height: 40px;
+        box-sizing: border-box;
+        transition: 150ms;
+        background-color: #ffddc1;
+}
+
+.oh-notif-icon {
+        float: left;
+        padding: 5px;
+}
+.oh-notif-message {
+        float: left;
+        padding: 10px;
+}
+.oh-notif-dismiss {
+        padding: 5px;
+        float: right;
+}
+
+.dismissed {
+    height: 0px;
+}
