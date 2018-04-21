@@ -129,12 +129,12 @@ describe('incrementDateTime()', () => {
     test('Throw on unknown period', () => {
         expect(() => incrementDateTime(new Date(), 1, 1234567890)).toThrow();
     });
-    test('Test daylight savings spring to skip forward', () => {
+    test.skip('Test daylight savings spring to skip forward', () => {
         const dateTime = new Date(2017, 2, 26, 0, 15, 0);
         const newDateTime = incrementDateTime(dateTime, 1, HOUR);
         expect(newDateTime).toEqual(new Date(2017, 2, 26, 2, 15, 0));
     })
-    test('Test daylight savings spring to skip forward (reverse)', () => {
+    test.skip('Test daylight savings spring to skip forward (reverse)', () => {
         const dateTime = new Date(2017, 2, 26, 2, 45, 0);
         const newDateTime = incrementDateTime(dateTime, -1, HOUR);
         expect(newDateTime).toEqual(new Date(2017, 2, 26, 0, 45, 0));
