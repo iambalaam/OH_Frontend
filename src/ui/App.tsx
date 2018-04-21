@@ -7,6 +7,7 @@ import {Store} from 'redux';
 import {store} from '../state/store';
 
 import logo from '../img/logo.svg';
+import Slider from './Slider/Slider';
 
 interface AppState {
     store: Store<store>
@@ -24,6 +25,7 @@ class App extends React.Component<{}, AppState> {
                 <div className="App">
                     <header className="App-header">
                         <Nav />
+                        <Slider />
                         <img src={logo} className="App-logo" alt="logo" />
                         <h1 className="App-title">Welcome to React</h1>
                     </header>
