@@ -1,53 +1,53 @@
 #oh-map .mapboxgl-popup-content {
     position: relative;
-    padding: 0px;
+    padding: 0;
     width: 200px;
-    height: 20px;
-    background-color: black;
-    border: 1px solid rgba(255, 255, 255, 0.8);
+    height: 250px;
+    background-color: #000;
+    border: 1px solid hsla(0,0%,100%,.8);
     border-radius: 0;
-    color: white;
-    overflow-y: hidden;
-}
-#oh-map * {
-        color: white;
-        overflow: visible;
+    color: #fff;
+    overflow-y: hidden
 }
 
-#oh-map .pin-content {
-        position: absolute;
-        box-sizing: border-box;
-        overflow-wrap: break-word;
-        top: 0;
-        width: 100%;
-        height: calc(100% - 20px);
-        padding: 10px;
-        overflow-y: scroll;
-        background: linear-gradient(transparent, black 150px);
+#oh-map .mapboxgl-popup-content * {
+    color: #fff
 }
 
-#oh-map .pin-content h2 {
-            margin-top: 75px;
-            margin-bottom: 10px;
-            font-size: 26px;
-            text-shadow: 2px 2px 2px black;
-            overflow: hidden;
+#oh-map .mapboxgl-popup-content .pin-content {
+    position: absolute;
+    box-sizing: border-box;
+    overflow-wrap: break-word;
+    top: 0;
+    width: 100%;
+    height: calc(100% - 20px);
+    padding: 10px;
+    overflow-y: scroll;
+    background: linear-gradient(transparent,#000 150px)
 }
 
-#oh-map .pin-content p {
-            font-size: 18px;
+#oh-map .mapboxgl-popup-content .pin-content h2 {
+    margin-top: 75px;
+    margin-bottom: 10px;
+    font-size: 26px;
+    text-shadow: 2px 2px 2px #000;
+    overflow: hidden
 }
 
-
-#oh-map .pin-footer {
-        position: absolute;
-        bottom: -3px;
-        width: 100%;
+#oh-map .mapboxgl-popup-content .pin-content p {
+    font-size: 18px
 }
-#oh-map button {
-            height: 20px;
-            font-size: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.8);
-            width: 50%;
-            margin: 0;
+
+#oh-map .mapboxgl-popup-content .pin-footer {
+    position: absolute;
+    bottom: -3px;
+    width: 100%
+}
+
+#oh-map .mapboxgl-popup-content .pin-footer button {
+    height: 20px;
+    font-size: 16px;
+    border: 1px solid hsla(0,0%,100%,.8);
+    width: 50%;
+    margin: 0
 }

@@ -35,7 +35,7 @@ class App extends React.Component<{}, AppState> {
     public render() {
         return (
             <Provider store={this.state.store}>
-                <div className="App">
+                <div id="App">
                     <header className="App-header">
                         <Nav />
                         <Slider />
