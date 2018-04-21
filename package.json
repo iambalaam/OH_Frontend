@@ -4,9 +4,14 @@
   "private": true,
   "homepage": "https://overhear.uk",
   "dependencies": {
+    "history": "^4.7.2",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
-    "react-scripts-ts": "2.15.1"
+    "react-redux": "^5.0.7",
+    "react-router-redux": "^4.0.8",
+    "react-scripts-ts": "2.15.1",
+    "redux": "^4.0.0",
+    "url-search-params": "^0.10.0"
   },
   "scripts": {
     "start": "react-scripts-ts start",
@@ -15,10 +20,14 @@
     "eject": "react-scripts-ts eject"
   },
   "devDependencies": {
+    "@types/history": "^4.6.2",
     "@types/jest": "^22.2.3",
-    "@types/node": "^9.6.5",
-    "@types/react": "^16.3.11",
+    "@types/node": "^9.6.6",
+    "@types/react": "^16.3.12",
     "@types/react-dom": "^16.0.5",
-    "typescript": "^2.8.1"
+    "@types/react-redux": "^5.0.16",
+    "@types/react-router-redux": "^5.0.13",
+    "@types/redux": "^3.6.31",
+    "typescript": "^2.8.3"
   }
 }
