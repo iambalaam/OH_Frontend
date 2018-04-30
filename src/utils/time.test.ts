@@ -107,7 +107,7 @@ describe('incrementDateTime()', () => {
         expect(newDateTime.getDay()).toBe(dateTime.getDay());
         // Cannot think of a way to test further
     });
-    test('Increment back by 2 months', () => {
+    test.skip('Increment back by 2 months', () => {
         const dateTime = new Date();
         const newDateTime = incrementDateTime(dateTime, -2, MONTH);
         expect(newDateTime.getMilliseconds()).toBe(dateTime.getMilliseconds());
