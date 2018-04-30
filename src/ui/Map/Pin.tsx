@@ -1,5 +1,4 @@
 import * as React from 'react';
-import {Popup} from 'react-mapbox-gl';
 
 import './Pin.css'
 import hot8 from '../../img/Hot8-250.jpg';
@@ -15,8 +14,8 @@ export const Pin = (props: PinProps) => {
 
     return (
         <a>
-            <Popup
-                coordinates={props.coordinates}
+            <div
+                // coordinates={props.coordinates}
                 onMouseLeave={() => props.onMouseLeave()}
             >
                 <img src={hot8} />
@@ -30,7 +29,7 @@ export const Pin = (props: PinProps) => {
                     <button>1</button>
                     <button>2</button>
                 </div>
-            </Popup>
+            </div>
         </a>
     )
 }

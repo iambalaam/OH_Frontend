@@ -1,11 +1,11 @@
 import * as React from 'react';
+import MapBox from './MapBox';
 import GetEventsIterator, {ApiGetEventsParams} from '../../api/getEvents';
-import {dateTimeToPixels, floorDateTime, incrementDateTime, DAY, SELECTION_WIDTH} from '../../utils/time';
+import {floorDateTime, incrementDateTime, DAY} from '../../utils/time';
 import {PositionState} from '../../state/reducers/position'
 import {TimeState} from '../../state/reducers/time';
 import Action from '../../state/actions/action';
 import {UPDATE_POSITION} from '../../state/actions/position';
-import MapBox, {Event} from './MapBox';
 
 interface MapApiRootProps {
     position: PositionState,
@@ -41,30 +41,17 @@ class MapApiRoot extends React.Component<MapApiRootProps, MapApiRootState> {
             latestStartTime: end.toISOString(),
             maximumRadius: 20
         }
-        const eventIterator = new GetEventsIterator(apiGetParams, (events: Event[]) => {
+        const eventIterator = new GetEventsIterator(apiGetParams, (events: any[]) => {
             this.setState({events: this.state.events.concat(events)})
         });
         eventIterator.getAllEvents();
     }
 
     render() {
-        const {bounds} = this.state;
-        const dt2px = (dt: Date) => dateTimeToPixels(this.props.time, dt)
         return (
-            <MapBox
-                position={this.props.position}
-                dispatch={this.props.dispatch}
-                setBounds={(bounds) => this.setState({bounds: bounds})}
-                events={this.state.events
-                    .filter((event) => {
-                        return (dt2px(event.finish) > - SELECTION_WIDTH / 2)
-                            && (dt2px(event.start) < SELECTION_WIDTH / 2)
-                            && (event.lat < bounds.n)
-                            && (event.lat > bounds.s)
-                            && (event.lng < bounds.e)
-                            && (event.lng > bounds.w)
-                    })}
-            />
+            <div id="mapbox-container">
+                <MapBox />
+            </div>
         );
     }
 }

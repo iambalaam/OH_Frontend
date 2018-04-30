@@ -1,5 +1,14 @@
 import {ApiRequest, apiGET} from './root';
-import {Event} from '../ui/Map/MapBox'
+
+export interface Event {
+    id: string
+    text: string,
+    description: string,
+    lat: number,
+    lng: number,
+    start: Date,
+    finish: Date
+}
 
 export interface ApiGetEventsParams {
     latitude: number,
@@ -71,6 +80,8 @@ export default class getEventsIterator {
         this.callback = callback;
         this.hasNext = true;
     }
+
+
 
     getNextEvents() {
         return new Promise((resolve, reject) => {
