@@ -19,11 +19,11 @@ Should we try and estimate a time for these releases?
 - Extended UI: filters (what exactly? band info[genre], venue info)
 - Clustering - solve this
 - User feedback
-- Continuous Integration (check circle CI)
+- ✅ Continuous Integration (check circle CI)
 - API User route (for admin on fb crawl)
 - Admin pages
 - Naive caching client-side
-- Backend API UNIT testing
+- ✅ Backend API UNIT testing
 - Frontend Component testing
 - Logging as much at least something to draw insights (Maybe 2nd sever?)
 - Find out exactly what we can't get with google analytics
