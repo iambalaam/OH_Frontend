@@ -1,4 +1,4 @@
-import {position, initialPositionState} from "./position";
+import {position, initialPositionState, PositionState} from "./position";
 import Action from '../actions/action';
 import {UPDATE_POSITION, updatePosition} from "../actions/position";
 
@@ -8,7 +8,7 @@ const testInit = {
 export const undefinedAction = {type: 'TEST', payload: undefined}
 const testUpdate: Action<UPDATE_POSITION> = {
     type: UPDATE_POSITION,
-    payload: {}
+    payload: {} as PositionState
 }
 
 describe('Reducer - position', () => {
@@ -36,7 +36,7 @@ describe('Reducer - position', () => {
             expect(position(initialPositionState, updatePosition({
                 latitude: 51.5074,
                 longitude: 0.1278
-            }))).toEqual({
+            } as PositionState))).toEqual({
                 ...initialPositionState,
                 latitude: 51.5074,
                 longitude: 0.1278
@@ -45,12 +45,12 @@ describe('Reducer - position', () => {
         test('Cannot not update with only latitude', () => {
             expect(position(initialPositionState, updatePosition({
                 latitude: 10
-            }))).toEqual(initialPositionState);
+            } as PositionState))).toEqual(initialPositionState);
         });
         test('Can update zoom level', () => {
             expect(position(initialPositionState, updatePosition({
                 zoom: 15
-            }))).toEqual({
+            } as PositionState))).toEqual({
                 ...initialPositionState,
                 zoom: 15
             });

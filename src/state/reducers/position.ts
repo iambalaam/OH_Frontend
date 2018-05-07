@@ -5,9 +5,9 @@ import {parsePositionQuery} from '../../utils/position';
 const URLSearchParams = require('url-search-params');
 
 export interface PositionState {
-    latitude?: number,
-    longitude?: number,
-    zoom?: number
+    latitude: number,
+    longitude: number,
+    zoom: number
 }
 export const initialPositionState: PositionState = {
     latitude: 53.3862166,

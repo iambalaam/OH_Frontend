@@ -49,9 +49,10 @@ class MapApiRoot extends React.Component<MapApiRootProps, MapApiRootState> {
 
     render() {
         return (
-            <div id="mapbox-container">
-                <MapBox />
-            </div>
+            <MapBox
+                position={this.props.position}
+                dispatch={this.props.dispatch}
+            />
         );
     }
 }

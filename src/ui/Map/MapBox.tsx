@@ -1,32 +1,39 @@
 import * as React from 'react';
-import ReactMapGL from 'react-map-gl';
+import ReactMapGL, {Viewport} from 'react-map-gl';
 // Required stylesheet
 import 'mapbox-gl/dist/mapbox-gl.css';
+import {PositionState} from '../../state/reducers/position';
+import Action from '../../state/actions/action';
+import {updatePosition} from '../../state/actions/position';
+import {DEBOUNCE} from '../../utils/query';
+import {push} from 'react-router-redux';
 
-interface MapBoxState {
-    container?: React.Ref<HTMLDivElement>
-    width: number,
-    height: number,
-    viewport: {
-        latitude: number,
-        longitude: number,
-        zoom: number
-    }
+const URLSearchParams = require('url-search-params');
+
+interface MapBoxProps {
+    position: PositionState,
+    dispatch: (action: Action<any>) => Action<any>
 }
 
-export default class MapBox extends React.Component<{}, MapBoxState> {
+interface MapBoxState {
+    width: number,
+    height: number,
+    intervalUpdateQuery?: NodeJS.Timer
+}
+
+export default class MapBox extends React.Component<MapBoxProps, MapBoxState> {
 
     constructor(props: any) {
         super(props);
         this.state = {
             width: window.innerWidth,
-            height: window.innerHeight,
-            viewport: {
-                latitude: 51.5,
-                longitude: 0,
-                zoom: 8
-            }
+            height: window.innerHeight
         };
+    }
+
+    componentDidMount() {
+        const container = document.querySelector('#oh-map') as HTMLDivElement;
+        this.setViewportDimensions(container);
     }
 
     setViewportDimensions(div: HTMLDivElement | null) {
@@ -41,18 +48,33 @@ export default class MapBox extends React.Component<{}, MapBoxState> {
         }
     }
 
+    onChange(positionState: Viewport) {
+        const {latitude, longitude, zoom} = positionState;
+        this.props.dispatch(updatePosition({latitude, longitude, zoom}));
+        if (this.state && this.state.intervalUpdateQuery) {
+            clearTimeout(this.state.intervalUpdateQuery);
+        }
+        const timeoutId = setTimeout(() => {
+            const queryParams = new URLSearchParams(window.location.search);
+            queryParams.set('lng', longitude);
+            queryParams.set('lat', latitude);
+            queryParams.set('zoom', zoom);
+            this.props.dispatch(push(`/?${queryParams.toString()}`));
+        }, DEBOUNCE);
+        this.setState({intervalUpdateQuery: timeoutId})
+
+    }
+
     render() {
         return (
-            <div
-                id='oh-map'
-                ref={(div) => {this.setViewportDimensions(div)}}
-            >
+            <div id='oh-map'>
                 <ReactMapGL
                     width={this.state.width}
                     height={this.state.height}
                     mapboxApiAccessToken={'pk.eyJ1IjoiaWFtYmFsYWFtIiwiYSI6ImNqOGFncHNzcDBkMnQzMHF3d3RmOTN3bGsifQ.qxxsYiL0Rq6m24_vAcU-NA'}
-                    onViewportChange={(viewport) => this.setState({viewport})}
-                    {...this.state.viewport}
+                    mapStyle='mapbox://styles/mapbox/streets-v9'
+                    onViewportChange={(positionState) => this.onChange(positionState)}
+                    {...this.props.position}
                 />
             </div>
         )

@@ -1,7 +1,7 @@
 import {PositionState} from "../state/reducers/position";
 
-const parsePositionQuery = (queryParams: URLSearchParams, initialPositionState: PositionState = {}): PositionState => {
-    const returnPosition = {...initialPositionState}
+const parsePositionQuery = (queryParams: URLSearchParams, initialPositionState: PositionState | {} = {}): PositionState => {
+    const returnPosition = {...initialPositionState} as PositionState;
     if (queryParams.has('zoom')) {
         returnPosition.zoom = parseFloat((<string>queryParams.get('zoom')));
     }
