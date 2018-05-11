@@ -16,37 +16,15 @@ interface MapBoxProps {
 }
 
 interface MapBoxState {
-    width: number,
-    height: number,
+    // width: number,
+    // height: number,
     intervalUpdateQuery?: NodeJS.Timer
 }
 
 export default class MapBox extends React.Component<MapBoxProps, MapBoxState> {
 
-    constructor(props: any) {
-        super(props);
-        this.state = {
-            width: window.innerWidth,
-            height: window.innerHeight
-        };
-    }
-
-    componentDidMount() {
-        const container = document.querySelector('#oh-map') as HTMLDivElement;
-        this.setViewportDimensions(container);
-    }
-
-    setViewportDimensions(div: HTMLDivElement | null) {
-        if (div !== null) {
-            const {offsetWidth, offsetHeight} = div;
-            if (offsetWidth !== this.state.width && offsetHeight !== this.state.height) {
-                this.setState({
-                    width: offsetWidth,
-                    height: offsetHeight
-                })
-            }
-        }
-    }
+    width: number = 0;
+    height: number = 0;
 
     onChange(positionState: Viewport) {
         const {latitude, longitude, zoom} = positionState;
@@ -67,10 +45,18 @@ export default class MapBox extends React.Component<MapBoxProps, MapBoxState> {
 
     render() {
         return (
-            <div id='oh-map'>
+            <div
+                id='oh-map'
+                ref={(div) => {
+                    if (div !== null) {
+                        this.width = div.clientWidth
+                        this.height = div.clientHeight
+                    }
+                }}
+            >
                 <ReactMapGL
-                    width={this.state.width}
-                    height={this.state.height}
+                    width={this.width}
+                    height={this.height}
                     mapboxApiAccessToken={'pk.eyJ1IjoiaWFtYmFsYWFtIiwiYSI6ImNqOGFncHNzcDBkMnQzMHF3d3RmOTN3bGsifQ.qxxsYiL0Rq6m24_vAcU-NA'}
                     mapStyle='mapbox://styles/mapbox/streets-v9'
                     onViewportChange={(positionState) => this.onChange(positionState)}
