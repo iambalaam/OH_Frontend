@@ -88,7 +88,7 @@ describe('incrementDateTime()', () => {
         expect(newDateTime.getMilliseconds()).toBe(dateTime.getMilliseconds());
         expect(newDateTime.getSeconds()).toBe(dateTime.getSeconds());
         expect(newDateTime.getMinutes()).toBe(dateTime.getMinutes());
-        expect(newDateTime.getHours()).toBe(dateTime.getHours() + 1);
+        expect(newDateTime.getHours()).toBe((dateTime.getHours() + 1) % 24);
     });
     test('Increment by 5 days', () => {
         const dateTime = new Date();

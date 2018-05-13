@@ -1,16 +1,17 @@
 import * as React from 'react';
 import MapBox from './MapBox';
-import GetEventsIterator, {ApiGetEventsParams} from '../../api/getEvents';
-import {floorDateTime, incrementDateTime, DAY} from '../../utils/time';
+import GetEventsIterator, {ApiGetEventsParams, Event} from '../../api/getEvents';
+import {floorDateTime, incrementDateTime, DAY, dateTimeToPixels, SELECTION_WIDTH} from '../../utils/time';
 import {PositionState} from '../../state/reducers/position'
 import {TimeState} from '../../state/reducers/time';
 import Action from '../../state/actions/action';
-import {UPDATE_POSITION} from '../../state/actions/position';
+import {UPDATE_EVENTS} from '../../state/actions/events';
 
 interface MapApiRootProps {
     position: PositionState,
     time: TimeState,
-    dispatch: (action: Action<UPDATE_POSITION>) => Action<UPDATE_POSITION>
+    events: UPDATE_EVENTS,
+    dispatch: (action: Action<any>) => Action<any>
 }
 
 export interface bounds {n: number, e: number, s: number, w: number}
@@ -42,14 +43,27 @@ class MapApiRoot extends React.Component<MapApiRootProps, MapApiRootState> {
             maximumRadius: 20
         }
         const eventIterator = new GetEventsIterator(apiGetParams, (events: any[]) => {
-            this.setState({events: this.state.events.concat(events)})
+            this.props.dispatch({
+                type: UPDATE_EVENTS,
+                payload: this.props.events.concat(events)
+            })
         });
         eventIterator.getAllEvents();
     }
 
     render() {
+        const {n, e, s, w} = this.state.bounds;
+        const dt2px = (dt: Date) => dateTimeToPixels(this.props.time, dt)
         return (
             <MapBox
+                events={this.props.events.filter((event) => (
+                    (dt2px(event.finish) > - SELECTION_WIDTH / 2)
+                    && (dt2px(event.start) < SELECTION_WIDTH / 2)
+                    && (event.lat < n)
+                    && (event.lat > s)
+                    && (event.lng < e)
+                    && (event.lng > w)
+                ))}
                 position={this.props.position}
                 dispatch={this.props.dispatch}
             />

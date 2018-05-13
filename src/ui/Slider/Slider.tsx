@@ -2,7 +2,7 @@ import * as React from 'react';
 import {connect, Dispatch} from 'react-redux';
 import {store} from '../../state/store';
 import {TimeState} from '../../state/reducers/time'
-import {updateTime, UPDATE_TIME} from '../../state/actions/time'
+import {updateTime} from '../../state/actions/time'
 import Action from '../../state/actions/action'
 import * as Utils from '../../utils/time';
 import SliderLayer from './SliderLayer'
@@ -337,7 +337,7 @@ class Slider extends React.Component<SliderProps, SliderState> {
 }
 
 const mapStateToProps = (state: store) => ({time: state.time});
-const mapDispatchToProps = (dispatch: Dispatch<Action<any>>) => ({dispatch: (action: Action<UPDATE_TIME>) => dispatch(action)});
+const mapDispatchToProps = (dispatch: Dispatch<Action<any>>) => ({dispatch: (action: Action<any>) => dispatch(action)});
 
 export default connect(
     mapStateToProps,

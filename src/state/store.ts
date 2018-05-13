@@ -6,19 +6,22 @@ import {user, initialUser} from './reducers/user';
 import {notifications, initialNotifications} from './reducers/notifications';
 import {TimeState, initialTimeState} from './reducers/time';
 import {PositionState, initialPositionState} from './reducers/position';
+import {Event} from '../api/getEvents';
 import Action from './actions/action';
 
 interface store {
     user: user,
     notifications: notifications,
     time: TimeState,
-    position: PositionState
+    position: PositionState,
+    events: Event[]
 }
 const initialStore: store = {
     user: initialUser,
     notifications: initialNotifications,
     time: initialTimeState,
-    position: initialPositionState
+    position: initialPositionState,
+    events: []
 }
 
 const history = createBrowserHistory();
