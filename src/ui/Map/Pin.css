@@ -1,4 +1,4 @@
-#oh-map .mapboxgl-popup-content {
+#oh-map .pin {
     position: relative;
     padding: 0;
     width: 200px;
@@ -7,14 +7,18 @@
     border: 1px solid hsla(0,0%,100%,.8);
     border-radius: 0;
     color: #fff;
-    overflow-y: hidden
+    overflow-y: hidden;
 }
 
-#oh-map .mapboxgl-popup-content * {
+#oh-map .pin img {
+    width: 100%
+}
+
+#oh-map * {
     color: #fff
 }
 
-#oh-map .mapboxgl-popup-content .pin-content {
+#oh-map .pin-content {
     position: absolute;
     box-sizing: border-box;
     overflow-wrap: break-word;
@@ -22,29 +26,29 @@
     width: 100%;
     height: calc(100% - 20px);
     padding: 10px;
-    overflow-y: scroll;
+    /* overflow-y: scroll; */
     background: linear-gradient(transparent,#000 150px)
 }
 
-#oh-map .mapboxgl-popup-content .pin-content h2 {
+#oh-map .pin-content h2 {
     margin-top: 75px;
     margin-bottom: 10px;
-    font-size: 26px;
+    font-size: 24px;
     text-shadow: 2px 2px 2px #000;
     overflow: hidden
 }
 
-#oh-map .mapboxgl-popup-content .pin-content p {
+#oh-map .pin-content p {
     font-size: 18px
 }
 
-#oh-map .mapboxgl-popup-content .pin-footer {
+#oh-map .pin-footer {
     position: absolute;
-    bottom: -3px;
+    bottom: 0;
     width: 100%
 }
 
-#oh-map .mapboxgl-popup-content .pin-footer button {
+#oh-map .pin-footer button {
     height: 20px;
     font-size: 16px;
     border: 1px solid hsla(0,0%,100%,.8);

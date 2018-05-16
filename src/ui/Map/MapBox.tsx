@@ -1,5 +1,5 @@
 import * as React from 'react';
-import ReactMapGL, {Viewport, Marker} from 'react-map-gl';
+import ReactMapGL, {Viewport} from 'react-map-gl';
 // Required stylesheet
 import 'mapbox-gl/dist/mapbox-gl.css';
 import {Event} from '../../api/getEvents';
@@ -8,6 +8,7 @@ import Action from '../../state/actions/action';
 import {updatePosition} from '../../state/actions/position';
 import {DEBOUNCE} from '../../utils/query';
 import {push} from 'react-router-redux';
+import {Pin} from './Pin';
 
 const URLSearchParams = require('url-search-params');
 
@@ -63,12 +64,7 @@ export default class MapBox extends React.Component<MapBoxProps, MapBoxState> {
                     {...this.props.position}
                 >
                     {this.props.events.map((event) => (
-                        <Marker
-                            latitude={event.lat}
-                            longitude={event.lng}
-                        >
-                            <h1>{event.id}</h1>
-                        </Marker>
+                        <Pin event={event} />
                     ))}
                 </ReactMapGL>
             </div>
