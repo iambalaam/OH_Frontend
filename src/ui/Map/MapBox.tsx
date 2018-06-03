@@ -1,5 +1,5 @@
 import * as React from 'react';
-import ReactMapGL, {Viewport} from 'react-map-gl';
+import ReactMapGL, {Viewport, Marker} from 'react-map-gl';
 // Required stylesheet
 import 'mapbox-gl/dist/mapbox-gl.css';
 import {Event} from '../../api/getEvents';
@@ -24,8 +24,8 @@ interface MapBoxState {
 
 export default class MapBox extends React.Component<MapBoxProps, MapBoxState> {
 
-    width: number = 0;
-    height: number = 0;
+    width: number = window.innerWidth;
+    height: number = window.innerHeight - 95;
 
     onChange(positionState: Viewport) {
         const {latitude, longitude, zoom} = positionState;
@@ -64,7 +64,13 @@ export default class MapBox extends React.Component<MapBoxProps, MapBoxState> {
                     {...this.props.position}
                 >
                     {this.props.events.map((event) => (
-                        <Pin event={event} />
+                        <Marker
+                            latitude={event.lat} longitude={event.lng}
+                            captureScroll={true} captureClick={true} captureDoubleClick={true} captureDrag={true}
+                            key={event.id}
+                        >
+                            <Pin event={event} key={event.id} />
+                        </Marker>
                     ))}
                 </ReactMapGL>
             </div>

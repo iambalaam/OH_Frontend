@@ -1,3 +1,7 @@
 #oh-map {
     flex: 1;
 }
+
+#oh-map * {
+    overflow: unset;
+}

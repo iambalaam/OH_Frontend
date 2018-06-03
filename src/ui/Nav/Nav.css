@@ -16,7 +16,7 @@ nav {
 
 #logo {
 	/* FIXME: Replace with proper font */
-	font-family: 'Fugaz One', Arial, Helvetica, sans-serif;;
+	font-family: 'Fugaz One', Arial, Helvetica, sans-serif;
 	line-height: 60px;
 	font-size: calc(60px / 2);
 	float: left;
